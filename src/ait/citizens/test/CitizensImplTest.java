@@ -2,6 +2,7 @@ package ait.citizens.test;
 
 import ait.citizens.dao.Citizens;
 import ait.citizens.dao.CitizensImpl;
+import ait.citizens.dao.CitizensSetImpl;
 import ait.citizens.model.Person;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ class CitizensImplTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        citizens = new CitizensImpl(List.of(
+        citizens = new CitizensSetImpl(List.of(
                 new Person(1, "Ivan", "Ivanov", now.minusYears(10)),
                 new Person(2, "Petr", "Petrov", now.minusYears(20)),
                 new Person(3, "Nikolay", "Nikolaev", now.minusYears(20)),
@@ -29,7 +30,7 @@ class CitizensImplTest {
     @Test
     void CitizensImpl() {
         //TODO
-        citizens = new CitizensImpl(List.of(new Person(1, "Ivan", "Ivanov", now.minusYears(10)),
+        citizens = new CitizensSetImpl(List.of(new Person(1, "Ivan", "Ivanov", now.minusYears(10)),
                 new Person(1, "Ivan", "Ivanov", now.minusYears(10))));
         assertEquals(1, citizens.size());
     }

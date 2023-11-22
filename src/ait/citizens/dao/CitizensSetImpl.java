@@ -20,7 +20,7 @@ public class CitizensSetImpl implements Citizens {
 
     public CitizensSetImpl() {
         idList = new TreeSet<>();
-        lastNameList = new TreeSet<>(lastNameList);
+        lastNameList = new TreeSet<>(lastNameComparator);
         ageList = new TreeSet<>(ageComparator);
     }
 
@@ -62,14 +62,17 @@ public class CitizensSetImpl implements Citizens {
 
     @Override
     public Iterable<Person> find(int minAge, int maxAge) {
-        //TODO
-        return null;
+        LocalDate now = LocalDate.now();
+        Person from = new Person(idList.first().getId() - 1, null, null, now.minusYears(minAge));
+        Person to = new Person(idList.last().getId() + 1, null, null, now.minusYears(maxAge));
+        return ageList.subSet(from, to);
     }
 
     @Override
     public Iterable<Person> find(String lastName) {
-        //TODO
-        return null;
+        Person from = new Person(Integer.MIN_VALUE, null, lastName, null);
+        Person to = new Person(Integer.MAX_VALUE, null, lastName, null);
+        return lastNameList.subSet(from, to);
     }
 
     //O(1)
